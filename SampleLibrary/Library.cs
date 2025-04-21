@@ -92,15 +92,7 @@ static class Library
 
     private static int GetNewID()
     {
-        List<int> IdNumbers = new();
-
-        foreach (Book book in LibraryItems)
-        {
-            IdNumbers.Add(book.IdNumber);
-        }
-
-        // Array.Sort(IdNumbers);
-        return IdNumbers.Max() + 1;
+        return LibraryItems.Any() ? LibraryItems.Max(book => book.IdNumber) + 1 : 1;
     }
 
     private static string TruncateString(string text, int maxLength)
@@ -132,7 +124,7 @@ static class Library
         Book? obtainedBook = GetBook(bookID);
         if (obtainedBook is null)
         {
-            Console.WriteLine("Book with ID {0} not found");
+            Console.WriteLine("Book with ID {0} not found", bookID);
         }
         else
         {
@@ -207,10 +199,10 @@ static class Library
                     Console.WriteLine("All items are currently {0}", keyword == "0" ? "Available":"Borrowed");
                     break;
                 case SearchOptions.Title:
-                    Console.WriteLine("Cannot find items with the title containing words: {0} ", keyword);
+                    Console.WriteLine("There are no items in our collection containing the word: {0} in the title", keyword);
                     break;
                 case SearchOptions.Author:
-                    Console.WriteLine("Cannot find items authored by: {0}", keyword);
+                    Console.WriteLine("There are no items in our collection authored by: {0}", keyword);
                     break;
             }
             return;
