@@ -1,42 +1,87 @@
+enum SearchOptions{
+    Title,
+    Author,
+    Availability
+}
+
 static class Library
 {
-    //TODO: Ubah inisialisasi BookList jadi loop dalam constructor
-    //TODO: Ubah IDNumber jadi IdNumber 
-    private static List<Book> BookList = new List<Book>()
+    //TODO: Ubah inisialisasi LibraryItems jadi loop dalam constructor -> Done
+    //TODO: Ubah IdNumber jadi IdNumber -> Done
+    private static List<Book> LibraryItems = new List<Book>();
+
+    static Library()
     {
-        new Book { Title = "The Open Society and Its Enemies", Author = "Karl Popper", IDNumber=11, IsAvailable = true },
-        new Book { Title = "Nineteen Eighty-Four", Author = "George Orwell", IDNumber=12, IsAvailable = true },
-        new Book { Title = "Animal Farm", Author = "George Orwell", IDNumber=13, IsAvailable = true },
-        new Book { Title = "To Kill a Mockingbird", Author = "Harper Lee", IDNumber=14, IsAvailable = true },
-        new Book { Title = "Brave New World", Author = "Aldous Huxley", IDNumber=15, IsAvailable = true },
-        new Book { Title = "The Catcher in the Rye", Author = "J.D. Salinger", IDNumber=16, IsAvailable = true },
-        new Book { Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", IDNumber=17, IsAvailable = true },
-        new Book { Title = "Sapiens: A Brief History of Humankind", Author = "Yuval Noah Harari", IDNumber=18, IsAvailable = true },
-        new Book { Title = "Thinking, Fast and Slow", Author = "Daniel Kahneman", IDNumber=19, IsAvailable = true },
-        new Book { Title = "The Road", Author = "Cormac McCarthy", IDNumber=20, IsAvailable = true },
-        new Book { Title = "Man's Search for Meaning", Author = "Viktor E. Frankl", IDNumber=21, IsAvailable = true },
-        new Book { Title = "Clean Code: A Handbook of Agile Software Craftmanship", Author = "Robert C. Martin", IDNumber=22, IsAvailable = true }
-    };
+        (string Title, string Author)[] initialBookDetails =
+        {
+            ("The Open Society and Its Enemies", "Karl Popper"),
+            ("The Poverty of Historicism", "Karl Popper"),
+
+            ("Nineteen Eighty-Four", "George Orwell"),
+            ("Animal Farm", "George Orwell"),
+
+            ("To Kill a Mockingbird", "Harper Lee"),
+            ("Go Set a Watchman", "Harper Lee"),
+
+            ("The Catcher in the Rye", "J.D. Salinger"),
+            ("Franny and Zooey", "J.D. Salinger"),
+
+            ("The Great Gatsby", "F. Scott Fitzgerald"),
+            ("Tender Is the Night", "F. Scott Fitzgerald"),
+
+            ("Sapiens: A Brief History of Humankind", "Yuval Noah Harari"),
+            ("Homo Deus: A Brief History of Tomorrow", "Yuval Noah Harari"),
+
+            ("Thinking, Fast and Slow", "Daniel Kahneman"),
+            ("Noise: A Flaw in Human Judgment", "Daniel Kahneman"),
+
+            ("The Road", "Cormac McCarthy"),
+            ("No Country for Old Men", "Cormac McCarthy"),
+
+            ("Man's Search for Meaning", "Viktor E. Frankl"),
+            ("The Will to Meaning", "Viktor E. Frankl"),
+
+            ("Clean Code: A Handbook of Agile Software Craftmanship", "Robert C. Martin"),
+            ("Clean Architecture: A Craftsman's Guide to Software Structure and Design", "Robert C. Martin"),
+
+            ("The C++ Programming Language", "Bjarne Strousroup"),
+            ("Programming: Principles and Practice Using C++", "Bjarne Strousroup"),
+        };
+
+        for (int i = 0; i < initialBookDetails.Length; i++)
+        {
+            LibraryItems.Add
+            (
+                new Book
+                {
+                    Title = initialBookDetails[i].Title,
+                    Author = initialBookDetails[i].Author,
+                    IdNumber = 11 + i,
+                    IsAvailable = true
+                }
+            );
+        }
+    }
 
     public static void MarkAsBorrowed(int bookID)
     {
         int index = GetBookIndex(bookID);
-        BookList[index].IsAvailable = false;
+        LibraryItems[index].IsAvailable = false;
     }
 
     public static void MarkAsReturned(int bookID)
     {
         int index = GetBookIndex(bookID);
-        BookList[index].IsAvailable = true;
+        LibraryItems[index].IsAvailable = true;
     }
 
     public static int GetBookIndex(int bookID)
     {
-        for (int i = 0; i < BookList.Count; i++)
+        for (int i = 0; i < LibraryItems.Count; i++)
         {
-            if (BookList[i].IDNumber == bookID)
+            if (LibraryItems[i].IdNumber == bookID)
             {
-                //Console.WriteLine("Book with title {0} by {1} found.", BookList[i].Title, BookList[i].Author);
+                //Console.WriteLine("Book with title {0} by {1} found.", LibraryItems[i].Title, LibraryItems[i].Author);
                 return i;
             }
         }
@@ -45,15 +90,17 @@ static class Library
         return -1;
     }
 
-    private static int GetNewID(){
-        List<int> idNumbers = new List<int>();
+    private static int GetNewID()
+    {
+        List<int> IdNumbers = new();
 
-        foreach(Book book in BookList){
-            idNumbers.Add(book.IDNumber);
+        foreach (Book book in LibraryItems)
+        {
+            IdNumbers.Add(book.IdNumber);
         }
 
-        // Array.Sort(idNumbers);
-        return idNumbers.Max() + 1;
+        // Array.Sort(IdNumbers);
+        return IdNumbers.Max() + 1;
     }
 
     private static string TruncateString(string text, int maxLength)
@@ -71,11 +118,11 @@ static class Library
         Console.WriteLine(new string('-', 90)); // separator line
 
         // Print each book row
-        foreach (Book book in BookList)
+        foreach (Book book in LibraryItems)
         {
             Console.WriteLine(
                 "{0,-10} | {1,-20} | {2,-40} | {3,-12}",
-                book.IDNumber, TruncateString(book.Author, 20), TruncateString(book.Title, 40), book.IsAvailable ? "Available" : "Not Available"
+                book.IdNumber, TruncateString(book.Author, 20), TruncateString(book.Title, 40), book.IsAvailable ? "Available" : "Not Available"
             );
         }
     }
@@ -91,12 +138,23 @@ static class Library
         {
             Console.WriteLine(
                 "Book Information\n\tBook ID: {0}\n\tTitle: {1}\n\tAuthor: {2}\n\tAvailability: {3}\n",
-                obtainedBook.IDNumber,
+                obtainedBook.IdNumber,
                 obtainedBook.Title,
                 obtainedBook.Author,
                 obtainedBook.IsAvailable ? "Available" : "Not available"
             );
         }
+    }
+
+    public static void DisplayBookInfo(Book book)
+    {
+        Console.WriteLine(
+            "Book Information\n\tBook ID: {0}\n\tTitle: {1}\n\tAuthor: {2}\n\tAvailability: {3}\n",
+            book.IdNumber,
+            book.Title,
+            book.Author,
+            book.IsAvailable ? "Available" : "Not available"
+        );
     }
 
     public static Book? GetBook(int bookID)
@@ -108,7 +166,60 @@ static class Library
         }
         else
         {
-            return BookList[bookIndex];
+            return LibraryItems[bookIndex];
+        }
+    }
+
+    public static List<Book> FilterBooks(SearchOptions option, string keyword){
+        var filterMethod = new Dictionary<SearchOptions, Func<string, List<Book>>>(){
+            {
+                SearchOptions.Title,
+                (filter) => {
+                    return LibraryItems.Where(b => b.Title.ToLower().Contains(filter)).ToList();
+                }
+            },
+            {
+                SearchOptions.Author,
+                (filter) => {
+                    return LibraryItems.Where(b => b.Author.ToLower().Contains(filter)).ToList();
+                }
+            },
+            {
+                SearchOptions.Availability,
+                (filter) => {
+                    if (filter == "1"){
+                        return LibraryItems.Where(b => b.IsAvailable.Equals(true)).ToList();
+                    } else{
+                        return LibraryItems.Where(b => b.IsAvailable.Equals(false)).ToList();
+                    }
+                }
+            },
+            
+        };
+        return filterMethod[option](keyword);
+    }
+
+    public static void DisplayFilterResult(SearchOptions option, string keyword){
+        var bookList = FilterBooks(option, keyword);
+        if (!bookList.Any() || bookList is null){
+            switch(option){
+                case SearchOptions.Availability:
+                    Console.WriteLine("All items are currently {0}", keyword == "0" ? "Available":"Borrowed");
+                    break;
+                case SearchOptions.Title:
+                    Console.WriteLine("Cannot find items with the title containing words: {0} ", keyword);
+                    break;
+                case SearchOptions.Author:
+                    Console.WriteLine("Cannot find items authored by: {0}", keyword);
+                    break;
+            }
+            return;
+        } else {
+            Console.WriteLine("Found {0} entries", bookList.Count);
+            foreach(Book book in bookList){
+                DisplayBookInfo(book);
+            }
+
         }
     }
 
@@ -128,7 +239,7 @@ static class Library
         else
         {
             MarkAsBorrowed(bookID);
-            Console.WriteLine("You have successfully borrowed \"{0}\" by {1}, id {2}", obtainedBook.Title, obtainedBook.Author, obtainedBook.IDNumber);
+            Console.WriteLine("You have successfully borrowed \"{0}\" by {1}, id {2}", obtainedBook.Title, obtainedBook.Author, obtainedBook.IdNumber);
             return bookID;
         }
     }
@@ -143,7 +254,7 @@ static class Library
         }
         if (!obtainedBook.IsAvailable)
         {
-            
+
             Console.WriteLine("Book with title \"{0}\" authored by {1} has been returned. Thank you for returning your book in time.", obtainedBook.Title, obtainedBook.Author);
             return bookID;
         }
@@ -154,11 +265,12 @@ static class Library
         }
     }
 
-    public static int AddNewBook(string title, string author){
+    public static int AddNewBook(string title, string author)
+    {
         int newID = GetNewID();
-        Book newBook = new Book{Title = title, Author = author, IDNumber = newID, IsAvailable = true};
+        Book newBook = new Book { Title = title, Author = author, IdNumber = newID, IsAvailable = true };
 
-        BookList.Add(newBook);
+        LibraryItems.Add(newBook);
 
         Console.WriteLine("Successfully added a new book titled \"{0}\" authored by \"{1}\"", newBook.Title, newBook.Author);
 

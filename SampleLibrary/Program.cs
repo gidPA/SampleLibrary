@@ -21,11 +21,11 @@ class SampleLibrary
             }
             else if (option.Key == ConsoleKey.D3)
             {
-                Console.WriteLine("Not yet implemented");
+                SearchBookByTitleUI();
             }
             else if (option.Key == ConsoleKey.D4)
             {
-                Console.WriteLine("Not yet implemented");
+                SearchBookByAuthorUI();
             }
             else if (option.Key == ConsoleKey.D5)
             {
@@ -114,7 +114,7 @@ class SampleLibrary
         Console.Write("Enter the book's ID number, then press enter\n(or press C to cancel): ");
         string? bookIDString = Console.ReadLine();
 
-        if (bookIDString.ToLower() == "c")
+        if (bookIDString?.ToLower() == "c")
         {
             return;
         }
@@ -153,5 +153,32 @@ class SampleLibrary
         }
 
         Library.AddNewBook(title, author);
+    }
+    static void SearchBookByTitleUI(){
+        Console.Write("Enter keyword: ");
+        string? title = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(title)){
+            Console.WriteLine("Please enter a valid title");
+            return;
+        } else if (title.ToLower() == "c"){
+            return;
+        }
+
+        Library.DisplayFilterResult(SearchOptions.Title, title);
+    }
+
+    static void SearchBookByAuthorUI(){
+        Console.Write("Enter keyword: ");
+        string? author = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(author)){
+            Console.WriteLine("Please enter a valid name");
+            return;
+        } else if (author.ToLower() == "c"){
+            return;
+        }
+
+        Library.DisplayFilterResult(SearchOptions.Author, author);
     }
 }
