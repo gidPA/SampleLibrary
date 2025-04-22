@@ -1,6 +1,7 @@
 enum SearchOptions{
     Title,
     Author,
+    AllCategories,
     Availability
 }
 
@@ -177,6 +178,31 @@ static class Library
                 }
             },
             {
+                SearchOptions.AllCategories,
+                (filter) => {
+                    int idFilter = 0;
+                    int.TryParse(filter, out idFilter);
+
+                    if(filter == "available" || filter == "unavailable"){
+                        bool availabilityFilter = filter == "available";
+                            return LibraryItems
+                                .Where(b =>
+                                    b.Title.ToLower().Contains(filter) ||
+                                    b.Author.ToLower().Contains(filter) ||
+                                    b.IdNumber.Equals(idFilter) ||
+                                    b.IsAvailable.Equals(availabilityFilter))
+                                .ToList();
+                    }
+
+                    return LibraryItems
+                        .Where(b =>
+                            b.Title.ToLower().Contains(filter) ||
+                            b.Author.ToLower().Contains(filter) ||
+                            b.IdNumber.Equals(idFilter))
+                        .ToList();
+                }
+            },
+            {
                 SearchOptions.Availability,
                 (filter) => {
                     if (filter == "1"){
@@ -188,23 +214,13 @@ static class Library
             },
             
         };
-        return filterMethod[option](keyword);
+        return filterMethod[option](keyword.ToLower());
     }
 
     public static void DisplayFilterResult(SearchOptions option, string keyword){
         var bookList = FilterBooks(option, keyword);
         if (!bookList.Any() || bookList is null){
-            switch(option){
-                case SearchOptions.Availability:
-                    Console.WriteLine("All items are currently {0}", keyword == "0" ? "Available":"Borrowed");
-                    break;
-                case SearchOptions.Title:
-                    Console.WriteLine("There are no items in our collection containing the word: {0} in the title", keyword);
-                    break;
-                case SearchOptions.Author:
-                    Console.WriteLine("There are no items in our collection authored by: {0}", keyword);
-                    break;
-            }
+            Console.WriteLine("No results");
             return;
         } else {
             Console.WriteLine("Found {0} entries", bookList.Count);

@@ -21,7 +21,7 @@ class SampleLibrary
             }
             else if (option.Key == ConsoleKey.D3)
             {
-                SearchBookByTitleUI();
+                SearchBookUI();
             }
             else if (option.Key == ConsoleKey.D4)
             {
@@ -61,7 +61,7 @@ class SampleLibrary
                 "Please choose an action: \n" +
                 "\t1. Display this control list\n" +
                 "\t2. Check Library collection\n" +
-                "\t3. Search books by title\n" +
+                "\t3. Search books\n" +
                 "\t4. Search books by author\n" +
                 "\t5. Search books by ID\n" +
                 "\t6. Borrow a book\n" +
@@ -154,18 +154,19 @@ class SampleLibrary
 
         Library.AddNewBook(title, author);
     }
-    static void SearchBookByTitleUI(){
+    static void SearchBookUI(){
+        Console.WriteLine("Search book by ID, title, author, or availability");
         Console.Write("Enter keyword: ");
-        string? title = Console.ReadLine();
+        string? keyword = Console.ReadLine();
 
-        if (string.IsNullOrEmpty(title)){
+        if (string.IsNullOrEmpty(keyword)){
             Console.WriteLine("Please enter a valid title");
             return;
-        } else if (title.ToLower() == "c"){
+        } else if (keyword.ToLower() == "c"){
             return;
         }
 
-        Library.DisplayFilterResult(SearchOptions.Title, title);
+        Library.DisplayFilterResult(SearchOptions.AllCategories, keyword);
     }
 
     static void SearchBookByAuthorUI(){
