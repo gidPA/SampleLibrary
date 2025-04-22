@@ -12,51 +12,17 @@ static class Library
 
     static Library()
     {
-        (string Title, string Author)[] initialBookDetails =
-        {
-            ("The Open Society and Its Enemies", "Karl Popper"),
-            ("The Poverty of Historicism", "Karl Popper"),
+        var csvReader = new CSVReader("startup/LibraryData.csv", new string[]{"BookId", "Title", "Author"});
+        var libraryData = csvReader.ReadCSVFile();
 
-            ("Nineteen Eighty-Four", "George Orwell"),
-            ("Animal Farm", "George Orwell"),
-
-            ("To Kill a Mockingbird", "Harper Lee"),
-            ("Go Set a Watchman", "Harper Lee"),
-
-            ("The Catcher in the Rye", "J.D. Salinger"),
-            ("Franny and Zooey", "J.D. Salinger"),
-
-            ("The Great Gatsby", "F. Scott Fitzgerald"),
-            ("Tender Is the Night", "F. Scott Fitzgerald"),
-
-            ("Sapiens: A Brief History of Humankind", "Yuval Noah Harari"),
-            ("Homo Deus: A Brief History of Tomorrow", "Yuval Noah Harari"),
-
-            ("Thinking, Fast and Slow", "Daniel Kahneman"),
-            ("Noise: A Flaw in Human Judgment", "Daniel Kahneman"),
-
-            ("The Road", "Cormac McCarthy"),
-            ("No Country for Old Men", "Cormac McCarthy"),
-
-            ("Man's Search for Meaning", "Viktor E. Frankl"),
-            ("The Will to Meaning", "Viktor E. Frankl"),
-
-            ("Clean Code: A Handbook of Agile Software Craftmanship", "Robert C. Martin"),
-            ("Clean Architecture: A Craftsman's Guide to Software Structure and Design", "Robert C. Martin"),
-
-            ("The C++ Programming Language", "Bjarne Strousroup"),
-            ("Programming: Principles and Practice Using C++", "Bjarne Strousroup"),
-        };
-
-        for (int i = 0; i < initialBookDetails.Length; i++)
-        {
+        foreach(var bookData in libraryData){
             LibraryItems.Add
             (
                 new Book
                 {
-                    Title = initialBookDetails[i].Title,
-                    Author = initialBookDetails[i].Author,
-                    IdNumber = 11 + i,
+                    Title = bookData["Title"],
+                    Author = bookData["Author"],
+                    IdNumber = int.Parse(bookData["BookId"]),
                     IsAvailable = true
                 }
             );
