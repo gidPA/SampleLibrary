@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 
-class CSVReader
+class CSVReaderOld
 {
-    public CSVReader(string fileLocation, string[] expectedHeaders)
+    public CSVReaderOld(string fileLocation, string[] expectedHeaders)
     {
         if (string.IsNullOrWhiteSpace(fileLocation))
             throw new ArgumentNullException(nameof(expectedHeaders));

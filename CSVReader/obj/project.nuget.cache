@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ugh57aMS4Bqc5xLhb2oCIAwEfhc0cDJSu55FxuPnFnYrGzffbIgvebd08E1nDhfqk0dGjEte6HPH6nFs4MNmYw==",
+  "dgSpecHash": "9JP7k4g+DnKbGzZeNnbIncOKoHxVkvtRqIFL8Tn58VHblr13UKuDjuFV+UyBL6RnXM8pkD1WTldY9MqUcd6u4w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SE-86\\Documents\\Libraries\\CSVReader\\CSVReader\\CSVReader.csproj",
+  "projectFilePath": "C:\\Users\\SE-86\\Documents\\SampleLibrary\\CSVReader\\CSVReader.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
