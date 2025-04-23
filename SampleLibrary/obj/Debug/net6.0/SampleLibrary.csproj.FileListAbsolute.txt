@@ -13,3 +13,6 @@ C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\obj\Debug\net6.0\refint\Sam
 C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\obj\Debug\net6.0\SampleLibrary.pdb
 C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\obj\Debug\net6.0\SampleLibrary.genruntimeconfig.cache
 C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\obj\Debug\net6.0\ref\SampleLibrary.dll
+C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\bin\Debug\net6.0\CSVReader.dll
+C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\bin\Debug\net6.0\CSVReader.pdb
+C:\Users\SE-86\Documents\SampleLibrary\SampleLibrary\obj\Debug\net6.0\SampleLibrary.csproj.CopyComplete

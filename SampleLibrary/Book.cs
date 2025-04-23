@@ -15,7 +15,3 @@ class Book{
     public int IdNumber {get;set;}
     public bool IsAvailable{get;set;}
 }
-
-class AudioVisualItem:Book{
-    public string RunningTime {get; set;}
-}

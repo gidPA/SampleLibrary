@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 
-class CSVReader
+public class CSVReader
 {
     public CSVReader(string fileLocation, string[] expectedHeaders)
     {

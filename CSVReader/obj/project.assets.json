@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SE-86\\Documents\\Libraries\\CSVReader\\CSVReader\\CSVReader.csproj",
+      "projectUniqueName": "C:\\Users\\SE-86\\Documents\\SampleLibrary\\CSVReader\\CSVReader.csproj",
       "projectName": "CSVReader",
-      "projectPath": "C:\\Users\\SE-86\\Documents\\Libraries\\CSVReader\\CSVReader\\CSVReader.csproj",
+      "projectPath": "C:\\Users\\SE-86\\Documents\\SampleLibrary\\CSVReader\\CSVReader.csproj",
       "packagesPath": "C:\\Users\\SE-86\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SE-86\\Documents\\Libraries\\CSVReader\\CSVReader\\obj\\",
+      "outputPath": "C:\\Users\\SE-86\\Documents\\SampleLibrary\\CSVReader\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SE-86\\AppData\\Roaming\\NuGet\\NuGet.Config"
