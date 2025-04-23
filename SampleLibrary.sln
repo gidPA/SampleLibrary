@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleLibrary", "SampleLibrary\SampleLibrary.csproj", "{98A37E8D-D160-4DD7-9B32-3408FCD24940}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVReader", "CSVReader\CSVReader.csproj", "{FAA22373-4856-48BF-B97E-0998B6E6DDCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{98A37E8D-D160-4DD7-9B32-3408FCD24940}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98A37E8D-D160-4DD7-9B32-3408FCD24940}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98A37E8D-D160-4DD7-9B32-3408FCD24940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA22373-4856-48BF-B97E-0998B6E6DDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA22373-4856-48BF-B97E-0998B6E6DDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA22373-4856-48BF-B97E-0998B6E6DDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA22373-4856-48BF-B97E-0998B6E6DDCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "SampleLibrary/1.0.0": {
+        "dependencies": {
+          "CSVReader": "1.0.0"
+        },
         "runtime": {
           "SampleLibrary.dll": {}
+        }
+      },
+      "CSVReader/1.0.0": {
+        "runtime": {
+          "CSVReader.dll": {}
         }
       }
     }
   },
   "libraries": {
     "SampleLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CSVReader/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
